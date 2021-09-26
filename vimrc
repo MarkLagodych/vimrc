@@ -53,9 +53,12 @@ let g:airline_theme='powerlineish'
 map <C-n> :NERDTreeToggle<CR>
 " Exit from terminal (called with :term command)
 tnoremap <Esc> <C-\><C-n>
-
+" Open buffer in a split
 command! -nargs=1 Vb :vsplit | b <args>
 command! -nargs=1 Hb :split | b <args>
+" Scroll up/down without moving cursor
+noremap <C-Up> <C-y>
+noremap <C-Down> <C-e>
 
 " ===== SPECIAL =====
 " Use tabs for Makefile (oh yes, it requires tabs)
