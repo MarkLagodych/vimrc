@@ -27,7 +27,7 @@ call plug#begin('~/.vim/vim-plug_plugins')
     Plug 'mhinz/vim-startify'
 call plug#end()
 
-" Settings
+" ===== SETTINGS =====
 set number
 set ai
 set wrap
@@ -39,20 +39,25 @@ set hlsearch
 set incsearch
 set backspace=indent,eol,start
 set modifiable
-set timeoutlen=1000 ttimeoutlen=0 " Fixed an issue of slow transition from INSERT to NORMAL mode
+" Fixed an issue of slow transition from INSERT to NORMAL mode
+set timeoutlen=1000 ttimeoutlen=0
 
-" Theme
+" ===== THEME =====
 syntax on
 colorscheme gruvbox
 set background=dark
 let g:airline_theme='powerlineish'
 
-" Mappings
+" ===== MAPPINGS, COMMANDS, FUNCTIONS =====
+" Toggle file explorer
 map <C-n> :NERDTreeToggle<CR>
+" Exit from terminal (called with :term command)
+tnoremap <Esc> <C-\><C-n>
 
+command! -nargs=1 Vb :vsplit | b <args>
+command! -nargs=1 Hb :split | b <args>
 
 " ===== SPECIAL =====
-
 " Use tabs for Makefile (oh yes, it requires tabs)
 autocmd FileType make setlocal noexpandtab
 
