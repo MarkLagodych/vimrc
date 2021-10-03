@@ -6,9 +6,8 @@ call plug#begin('~/.vim/vim-plug_plugins')
     " Color theme
     Plug 'morhetz/gruvbox'
 
-    " ===== Autocompletion =====
-    " Needs additional compilation: cd <plugindir> && python3 install.py --clangd-completer
-    Plug 'valloric/youcompleteme'
+    " Autocompletion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Braces and quotes
     Plug 'jiangmiao/auto-pairs'
 
@@ -63,4 +62,5 @@ noremap <C-Down> <C-e>
 " ===== SPECIAL =====
 " Use tabs for Makefile (oh yes, it requires tabs)
 autocmd FileType make setlocal noexpandtab
-
+" Specify coc.nvim extensions
+let g:coc_global_extensions=['coc-clangd']
