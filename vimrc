@@ -46,18 +46,22 @@ syntax on
 colorscheme gruvbox
 set background=dark
 let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline_symbols.colnr = '#'
+let g:airline_symbols.linenr = ' '
 
 " ===== MAPPINGS, COMMANDS, FUNCTIONS =====
 " Toggle file explorer
 map <C-n> :NERDTreeToggle<CR>
 " Exit from terminal (called with :term command)
 tnoremap <Esc> <C-\><C-n>
-" Open buffer in a split
-command! -nargs=1 Vb :vsplit | b <args>
-command! -nargs=1 Hb :split | b <args>
 " Scroll up/down without moving cursor
 noremap <C-Up> <C-y>
 noremap <C-Down> <C-e>
+" Buffer navigation
+map <C-[> :bp<CR>
+map <C-]> :bn<CR>
 
 " ===== SPECIAL =====
 " Use tabs for Makefile (oh yes, it requires tabs)
