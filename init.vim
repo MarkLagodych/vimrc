@@ -86,3 +86,4 @@ endif
 let g:airline_symbols.colnr = '#'
 let g:airline_symbols.linenr = ' '
 let g:airline_symbols.maxlinenr = ' '
+let g:airline_section_x = '%{toupper(&filetype[0]) . &filetype[1:]}'
