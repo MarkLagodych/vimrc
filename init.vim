@@ -77,7 +77,7 @@ nnoremap <A-l> <C-w>L
 " Use tabs for Makefile (oh yes, it requires tabs)
 autocmd FileType make setlocal noexpandtab
 " Specify coc.nvim extensions
-let g:coc_global_extensions=['coc-clangd']
+let g:coc_global_extensions=['coc-clangd', 'coc-dlang']
 " Configure airline
 let g:airline_powerline_fonts = 1 " Install fonts-powerline for this
 if !exists('g:airline_symbols')
@@ -86,4 +86,5 @@ endif
 let g:airline_symbols.colnr = '#'
 let g:airline_symbols.linenr = ' '
 let g:airline_symbols.maxlinenr = ' '
-let g:airline_section_x = '%{toupper(&filetype[0]) . &filetype[1:]}'
+let g:airline_section_x =
+    \'%{substitute(toupper(&filetype[0]) . &filetype[1:], "Cpp", "C++", "")}'
