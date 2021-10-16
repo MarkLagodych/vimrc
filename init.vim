@@ -100,6 +100,9 @@ inoremap <C-d> <Esc>O
 " Use tabs for Makefile (oh yes, it requires tabs)
 autocmd FileType make setlocal noexpandtab
 
+" Do not list terminals as buffers
+autocmd TermOpen * setlocal nobuflisted
+
 " Specify coc.nvim extensions
 let g:coc_global_extensions=['coc-clangd', 'coc-dlang']
 
