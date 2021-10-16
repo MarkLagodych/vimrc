@@ -79,9 +79,8 @@ nnoremap <A-k> <C-w>K
 nnoremap <A-l> <C-w>L
 
 " Another way to escape
-inoremap <C-Space> <Esc>
-tnoremap <C-Space> <C-\><C-n>
-vnoremap <C-Space> <Esc>
+noremap <C-Space> <Esc>
+nunmap <C-Space>
 
 " Delete lines in INSERT mode
 inoremap <C-x> <Esc>ddi
