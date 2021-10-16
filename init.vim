@@ -63,8 +63,8 @@ noremap <C-Up> <C-y>
 noremap <C-Down> <C-e>
 
 " Buffer navigation
-nnoremap <C-[> :bp<CR>
-nnoremap <C-]> :bn<CR>
+nnoremap <C-,> :bp<CR>
+nnoremap <C-.> :bn<CR>
 
 " Window navigation
 nnoremap <C-h> <C-w>h
