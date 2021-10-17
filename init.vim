@@ -78,10 +78,6 @@ nnoremap <A-j> <C-w>J
 nnoremap <A-k> <C-w>K
 nnoremap <A-l> <C-w>L
 
-" Another way to escape
-noremap <C-Space> <Esc>
-nunmap <C-Space>
-
 " Delete lines in INSERT mode
 inoremap <C-x> <Esc>ddi
 
@@ -89,12 +85,21 @@ inoremap <C-x> <Esc>ddi
 inoremap <C-z> <Esc>ui
 
 " Empty line insetion
-" Above
+" Lower
 nnoremap f o<Esc>k
 inoremap <C-s> <Esc>o
-" Under
+" Upper
 nnoremap F O<Esc>j
 inoremap <C-d> <Esc>O
+" Build and run project
+inoremap <C-CR> <C-[>:w<CR><C-w><C-l><C-w><C-j>i./.build && ./.run<CR>
+nnoremap <C-CR> <C-w><C-l><C-w><C-j>i./.build && ./.run<CR>
+" Escape from terminal and return to editing
+tnoremap <C-q> <C-\><C-n><C-w><C-h>i
+
+" Select text
+inoremap <S-Right> <Esc><Right><C-v><Right>
+inoremap <S-Left>  <Esc><C-v><Left>
 
 " ========================= SPECIAL ==========================
 " Use tabs for Makefile (oh yes, it requires tabs)
