@@ -102,6 +102,10 @@ inoremap <C-s> <Esc>o
 nnoremap F O<Esc>j
 inoremap <C-d> <Esc>O
 
+" Move lines
+nnoremap , :m.-2<CR>
+nnoremap . :m.+1<CR>
+
 " Build and run project
 " This needs some preparation, for example:
 " $ echo "cargo run" > ./.run
@@ -133,11 +137,14 @@ autocmd TermOpen * setlocal nobuflisted
 " For Rust language server (rls):
 "   1) Install rustup
 "   2) $ rustup component add rls rust-analysis rust-src
+"   3) Logout, login 
+"   4) Make sure that **/.cargo/bin is in your path
 let g:coc_global_extensions=['coc-clangd', 'coc-dlang', 'coc-rls']
 
 " Configure airline
 let g:airline_powerline_fonts = 1 " Install fonts-powerline for this
 
+" Replace ugly symbols
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
