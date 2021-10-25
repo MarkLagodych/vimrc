@@ -7,7 +7,7 @@ call plug#begin('~/.vim/vim-plug_plugins')
     Plug 'morhetz/gruvbox'
 
     " Autocompletion
-    " 1) Install Node.js  2) :PlugInstall  3) :CocCommand clangd.install
+    " Install Node.js for coc!!!
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Braces and quotes
     Plug 'jiangmiao/auto-pairs'
@@ -20,11 +20,18 @@ call plug#begin('~/.vim/vim-plug_plugins')
     Plug 'ctrlpvim/ctrlp.vim'
 
     " Fancy status line
+    " Install airline-fonts to make it look nice!!!
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
 
     " Fancy startup screen
     Plug 'mhinz/vim-startify'
+
+    " ======= Language support ========
+    " OpenGL shader language (GLSL)
+    Plug 'tikhomirov/vim-glsl'
+    " Toml (Cargo config files)
+    Plug 'cespare/vim-toml', { 'branch': 'main' }
 call plug#end()
 
 " ========================== SETTINGS ===========================
@@ -84,20 +91,32 @@ inoremap <C-x> <Esc>ddi
 " Ctrl+Z like in normal editors
 inoremap <C-z> <Esc>ui
 
+" Exit to NORMAL mode and save
+inoremap <C-w> <Esc>:w<CR>
+
 " Empty line insetion
-" Lower
+" Below
 nnoremap f o<Esc>k
 inoremap <C-s> <Esc>o
-" Upper
+" Above
 nnoremap F O<Esc>j
 inoremap <C-d> <Esc>O
+
 " Build and run project
-inoremap <C-CR> <C-[>:w<CR><C-w><C-l><C-w><C-j>i./.build && ./.run<CR>
-nnoremap <C-CR> <C-w><C-l><C-w><C-j>i./.build && ./.run<CR>
-" Escape from terminal and return to editing
+" This needs some preparation, for example:
+" $ echo "cargo run" > ./.run
+" $ echo "cargo check" > ./.check
+" $ chmod +x ./.run
+" $ chmod +x ./.check
+nnoremap <F12> :!./.run<CR>
+nnoremap <F9> :!./.check<CR>
+inoremap <F12> <Esc>:w<CR>:!./.run<CR>
+inoremap <F9> <Esc>:w<CR>:!./.check<CR>
+
+" Escape from terminal on the right and return to editing
 tnoremap <C-q> <C-\><C-n><C-w><C-h>i
 
-" Select text
+" Select text in INSERT mode
 inoremap <S-Right> <Esc><Right><C-v><Right>
 inoremap <S-Left>  <Esc><C-v><Left>
 
@@ -109,14 +128,24 @@ autocmd FileType make setlocal noexpandtab
 autocmd TermOpen * setlocal nobuflisted
 
 " Specify coc.nvim extensions
-let g:coc_global_extensions=['coc-clangd', 'coc-dlang']
+" For C/C++ clang completer:
+"   1) :CocCommand clangd.install
+" For Rust language server (rls):
+"   1) Install rustup
+"   2) $ rustup component add rls rust-analysis rust-src
+let g:coc_global_extensions=['coc-clangd', 'coc-dlang', 'coc-rls']
 
 " Configure airline
 let g:airline_powerline_fonts = 1 " Install fonts-powerline for this
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
 let g:airline_symbols.colnr = '#'
 let g:airline_symbols.linenr = ' '
 let g:airline_symbols.maxlinenr = ' '
+let g:airline_symbols.notexists = '?'
+
+" Display language name with first capital letter
+" And show "C++", not that creepy "Cpp"
 let g:airline_section_x='%{substitute(toupper(&ft[0]).&ft[1:],"Cpp","C++","")}'
