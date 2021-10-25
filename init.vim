@@ -112,10 +112,10 @@ nnoremap . :m.+1<CR>
 " $ echo "cargo check" > ./.check
 " $ chmod +x ./.run
 " $ chmod +x ./.check
-nnoremap <F12> :!./.run<CR>
-nnoremap <F9> :!./.check<CR>
-inoremap <F12> <Esc>:w<CR>:!./.run<CR>
-inoremap <F9> <Esc>:w<CR>:!./.check<CR>
+nnoremap <F12> :term ./.run<CR>i
+nnoremap <F9> :term ./.check<CR>i
+inoremap <F12> <Esc>:w<CR>:term ./.run<CR>i
+inoremap <F9> <Esc>:w<CR>:term ./.check<CR>i
 
 " Escape from terminal on the right and return to editing
 tnoremap <C-q> <C-\><C-n><C-w><C-h>i
