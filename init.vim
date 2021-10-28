@@ -108,14 +108,21 @@ nnoremap . :m.+1<CR>
 
 " Build and run project
 " This needs some preparation, for example:
-" $ echo "cargo run" > ./.run
-" $ echo "cargo check" > ./.check
-" $ chmod +x ./.run
-" $ chmod +x ./.check
-nnoremap <F12> :term ./.run<CR>i
-nnoremap <F9> :term ./.check<CR>i
-inoremap <F12> <Esc>:w<CR>:term ./.run<CR>i
-inoremap <F9> <Esc>:w<CR>:term ./.check<CR>i
+" $ echo "cargo run" > .run
+" $ echo "cargo check" > .check
+" $ chmod +x .run
+" $ chmod +x .check
+if has('win32')
+    nnoremap <F12> :term .run.bat<CR>i
+    nnoremap <F9> :term .check.bat<CR>i
+    inoremap <F12> <Esc>:w<CR>:term .run.bat<CR>i
+    inoremap <F9> <Esc>:w<CR>:term .check.bat<CR>i
+else
+    nnoremap <F12> :term ./.run<CR>i
+    nnoremap <F9> :term ./.check<CR>i
+    inoremap <F12> <Esc>:w<CR>:term ./.run<CR>i
+    inoremap <F9> <Esc>:w<CR>:term ./.check<CR>i
+endif
 
 " Escape from terminal on the right and return to editing
 tnoremap <C-q> <C-\><C-n><C-w><C-h>i
